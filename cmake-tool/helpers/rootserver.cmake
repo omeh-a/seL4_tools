@@ -32,6 +32,10 @@ mark_as_advanced(UIMAGE_TOOL)
 include(CMakeDependentOption)
 cmake_dependent_option(UseRiscVOpenSBI "Use OpenSBI." ON "KernelArchRiscV" OFF)
 
+if(KernelPlatformCheshire)
+        set(UseRiscVOpenSBI OFF)
+endif()
+
 if(UseRiscVOpenSBI)
     set(OPENSBI_PATH "${CMAKE_SOURCE_DIR}/tools/opensbi" CACHE STRING "OpenSBI Folder location")
     mark_as_advanced(FORCE OPENSBI_PATH)
